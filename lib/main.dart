@@ -1,6 +1,6 @@
-import 'package:cinelog/home_screen.dart';
+import 'package:cinelog/login_screen.dart';
 import 'package:flutter/material.dart';
-//import 'package:cinelog/login_screen.dart';
+
 
 
 void main() {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Glory'
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }

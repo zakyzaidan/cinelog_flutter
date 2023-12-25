@@ -1,4 +1,4 @@
-import 'package:cinelog/home_screen.dart';
+import 'package:cinelog/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget{
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget{
                 ),),
                 onPressed: (){
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const HomeScreen()));
+                      MaterialPageRoute(builder: (context) => const MainScreen()));
                 },
               ),
             )
