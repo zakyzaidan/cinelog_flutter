@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cinelog/assets/datafilm.dart';
 import 'package:cinelog/detail_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}): super(key:key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(0, 70, 0, 10),
+              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -28,7 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Row(
                         children: [
                           Icon(Icons.notifications),
+                          SizedBox(width: 5),
                           Text("User Name"),
+                          SizedBox(width: 5),
                           CircleAvatar(backgroundColor: Colors.grey,),
                         ],
                       )
@@ -39,16 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Container(
                     alignment: Alignment.bottomLeft,
-                    child: Text("Exploration", 
+                    child: const Text("Exploration", 
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold)
                     ),
                   ),
                   TextField(
-                    style: TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 10),
                     decoration: InputDecoration(
-                      label: Text("Pencarian"),
+                      label: const Text("Pencarian"),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50.0),
                       )
@@ -58,7 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Flexible(
-              child: BuildCard(),
+                child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  if (constraints.maxWidth < 600) {
+                    return const BuildCard(crossAxisCount: 2);
+                  } else if (constraints.maxWidth < 900) {
+                    return const BuildCard(crossAxisCount: 3);
+                  } else if (constraints.maxWidth < 1300) {
+                    return const BuildCard(crossAxisCount: 4);
+                  } else {
+                    return const BuildCard(crossAxisCount: 5);
+                  }
+                },
+              ),
             )
           ],
         ),
@@ -67,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class BuildCard extends StatelessWidget {
-  const BuildCard({super.key});
+  final int crossAxisCount;
+  const BuildCard({Key? key, required this.crossAxisCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +85,7 @@ class BuildCard extends StatelessWidget {
       shrinkWrap: true,
       itemCount: listfilm.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: crossAxisCount,
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
         mainAxisExtent: 330
@@ -96,7 +106,7 @@ class BuildCard extends StatelessWidget {
                 height: 250,
                 width: double.infinity,
                 fit: BoxFit.fill,),
-                Divider(thickness: 4,color: Colors.black),
+                const Divider(thickness: 4,color: Colors.black),
                 Row(
                   children: [
                     Text(listfilm.elementAt(index).judul,

@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     const KomunitasScreen()
   ];
 
-  void OnTap(int index){
+  void onTap(int index){
           setState(() {
             _curIndex = index;
           });
@@ -28,11 +28,13 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-        body: pages[_curIndex],
+        body: SafeArea(
+          child: pages[_curIndex]
+        ),
         bottomNavigationBar: BottomNavigationBar(
         currentIndex: _curIndex,
         type: BottomNavigationBarType.fixed,
-        onTap: (index) => OnTap(index),
+        onTap: (index) => onTap(index),
         iconSize: 30,
         selectedFontSize: 23,
         unselectedFontSize: 20,
