@@ -7,71 +7,71 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset('images/CinelogLogo.png',scale: 2,),
-                      const Row(
-                        children: [
-                          Icon(Icons.notifications),
-                          SizedBox(width: 5),
-                          Text("User Name"),
-                          SizedBox(width: 5),
-                          CircleAvatar(backgroundColor: Colors.grey,),
-                        ],
-                      )
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 3, color: Colors.black,
-                  ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    child: const Text("Exploration", 
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold)
+    return SingleChildScrollView(
+      child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Image.asset('images/CinelogLogo.png',scale: 2,),
+                        const Row(
+                          children: [
+                            Icon(Icons.notifications),
+                            SizedBox(width: 5),
+                            Text("User Name"),
+                            SizedBox(width: 5),
+                            CircleAvatar(backgroundColor: Colors.grey,),
+                          ],
+                        )
+                      ],
                     ),
-                  ),
-                  TextField(
-                    style: const TextStyle(fontSize: 10),
-                    decoration: InputDecoration(
-                      label: const Text("Pencarian"),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      )
+                    const Divider(
+                      thickness: 3, color: Colors.black,
                     ),
-                  ),
-                ],
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      child: const Text("Exploration", 
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)
+                      ),
+                    ),
+                    TextField(
+                      style: const TextStyle(fontSize: 10),
+                      decoration: InputDecoration(
+                        label: const Text("Pencarian"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                        )
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Flexible(
-                child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  if (constraints.maxWidth < 600) {
-                    return const BuildCard(crossAxisCount: 2);
-                  } else if (constraints.maxWidth < 900) {
-                    return const BuildCard(crossAxisCount: 3);
-                  } else if (constraints.maxWidth < 1300) {
-                    return const BuildCard(crossAxisCount: 4);
-                  } else {
-                    return const BuildCard(crossAxisCount: 5);
-                  }
-                },
-              ),
-            )
-          ],
+              LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    if (constraints.maxWidth < 600) {
+                      return const BuildCard(crossAxisCount: 2);
+                    } else if (constraints.maxWidth < 900) {
+                      return const BuildCard(crossAxisCount: 3);
+                    } else if (constraints.maxWidth < 1300) {
+                      return const BuildCard(crossAxisCount: 4);
+                    } else {
+                      return const BuildCard(crossAxisCount: 5);
+                    }
+                  },
+                ),
+            ],
+          ),
         ),
-      );
+    );
   }
 }
 
