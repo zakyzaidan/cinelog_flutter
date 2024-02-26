@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018822041172",
+    "project_id": "cinelog-312a0",
+    "storage_bucket": "cinelog-312a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018822041172:android:3dd7f1100ac029c8ced7c1",
+        "android_client_info": {
+          "package_name": "com.example.cinelog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkNT84XZ2SCpAJlYlKz3nUlwQTBnaGvvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

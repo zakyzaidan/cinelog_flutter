@@ -1,62 +1,71 @@
-import 'package:cinelog/katalog_screen.dart';
-import 'package:cinelog/komunitas_screen.dart';
-import 'package:cinelog/home_screen.dart';
+import 'package:cinelog/features/catalog/ui/catalog_screen.dart';
+import 'package:cinelog/features/comunity/ui/komunitas_screen.dart';
+import 'package:cinelog/features/home/ui/home_screen.dart';
+import 'package:cinelog/features/profile/ui/profile_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
-class MainScreen extends StatefulWidget{
-  const MainScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  final int index;
+  MainScreen({Key? key, required this.index}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _curIndex = 0;
+  late int _curIndex = widget.index;
+
   List pages = [
     const HomeScreen(),
-    const KatalogScreen(),
-    const KomunitasScreen()
+    KatalogScreen(),
+    const KomunitasScreen(),
+    ProfileScreen()
   ];
 
-  void onTap(int index){
-          setState(() {
-            _curIndex = index;
-          });
-        }
+  void onTap(int index) {
+    setState(() {
+      _curIndex = index;
+    });
+  }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: pages[_curIndex]
-        ),
-        bottomNavigationBar: BottomNavigationBar(
+      body: SafeArea(child: pages[_curIndex]),
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _curIndex,
         type: BottomNavigationBarType.fixed,
         onTap: (index) => onTap(index),
         iconSize: 30,
         selectedFontSize: 23,
         unselectedFontSize: 20,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.home, color: Color(0xFFF05454)),
-            icon: Icon(Icons.home_outlined,color: Colors.black,),
-            label: "home",
-            backgroundColor:  Color(0xFFE8E8E8)
-          ),
+              activeIcon: Icon(Icons.home, color: Color(0xFFF05454)),
+              icon: Icon(
+                Icons.home_outlined,
+                color: Theme.of(context).primaryColorDark,
+              ),
+              label: "Home",
+              backgroundColor: Color(0xFFE8E8E8)),
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.filter, color: Color(0xFFF05454)),
-            icon: Icon(Icons.filter,color: Colors.black),
-            label: "Katalog",
-            backgroundColor:  Color(0xFFE8E8E8)
-          ),
+              activeIcon: Icon(Icons.filter, color: Color(0xFFF05454)),
+              icon:
+                  Icon(Icons.filter, color: Theme.of(context).primaryColorDark),
+              label: "Catalog",
+              backgroundColor: Color(0xFFE8E8E8)),
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.people, color: Color(0xFFF05454)),
-            icon: Icon(Icons.people_outline,color: Colors.black),
-            label: "Komunitas",
-            backgroundColor:  Color(0xFFE8E8E8)
-          ),
+              activeIcon: Icon(Icons.people, color: Color(0xFFF05454)),
+              icon: Icon(Icons.people_outline,
+                  color: Theme.of(context).primaryColorDark),
+              label: "Comunity",
+              backgroundColor: Color(0xFFE8E8E8)),
+          BottomNavigationBarItem(
+              activeIcon: Icon(Icons.person, color: Color(0xFFF05454)),
+              icon: Icon(Icons.person_2_outlined,
+                  color: Theme.of(context).primaryColorDark),
+              label: "Profile",
+              backgroundColor: Color(0xFFE8E8E8)),
         ],
       ),
     );
